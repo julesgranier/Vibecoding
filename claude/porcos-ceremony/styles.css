@@ -1,0 +1,458 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #ff6b35;
+    --primary-dark: #e85a2c;
+    --secondary-color: #1f2937;
+    --accent-gold: #fbbf24;
+    --accent-pink: #ec4899;
+    --bg-white: #ffffff;
+    --bg-light: #f9fafb;
+    --bg-gradient: linear-gradient(135deg, #fef3c7 0%, #fce7f3 50%, #dbeafe 100%);
+    --text-dark: #1f2937;
+    --text-light: #6b7280;
+    --border-color: #e5e7eb;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: var(--text-dark);
+    line-height: 1.6;
+    background-color: var(--bg-white);
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><text y="24" font-size="24">🐷</text></svg>') 16 16, auto;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Hero Section */
+.hero {
+    padding: 4rem 0 2rem;
+    background: var(--bg-gradient);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '🏆 🐷 ✨ 🎉 🐷 🏆 ✨ 🎉';
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+    opacity: 0.3;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+.hero-content {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.hero-title {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    color: var(--text-dark);
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 3px 3px 0px rgba(251, 191, 36, 0.3);
+    position: relative;
+    display: inline-block;
+}
+
+.hero-title::before {
+    content: '🐷';
+    position: absolute;
+    left: -80px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-15deg);
+    font-size: 3rem;
+    animation: wiggle 2s ease-in-out infinite;
+}
+
+.hero-title::after {
+    content: '🏆';
+    position: absolute;
+    right: -80px;
+    top: 50%;
+    transform: translateY(-50%) rotate(15deg);
+    font-size: 3rem;
+    animation: wiggle 2s ease-in-out infinite;
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: translateY(-50%) rotate(-15deg); }
+    50% { transform: translateY(-50%) rotate(15deg); }
+}
+
+.hero-image {
+    margin-top: 3rem;
+    text-align: center;
+    position: relative;
+}
+
+.hero-image img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    animation: heroEntrance 2s ease-out forwards;
+    transform: scale(0) rotate(0deg) translateY(-100px);
+    opacity: 0;
+}
+
+@keyframes heroEntrance {
+    0% {
+        transform: scale(0.2) translateY(-300px) rotate(0deg);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1) translateY(0) rotate(1080deg);
+        opacity: 1;
+    }
+}
+
+.hero-image::before,
+.hero-image::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    animation: confetti 2s ease-out forwards;
+    animation-delay: 1.3s;
+    opacity: 0;
+}
+
+/* Confetti particles */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: 50%;
+    left: 50%;
+    pointer-events: none;
+}
+
+.confetti::before,
+.confetti::after {
+    content: '🎉';
+    position: absolute;
+    font-size: 2rem;
+    animation: confettiFall 3s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--x), 500px) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+.hero-cta {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+/* Buttons */
+.cta-button {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-pink) 100%);
+    color: white;
+    border: none;
+    padding: 1.25rem 3rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button::before {
+    content: '🐷';
+    margin-right: 10px;
+}
+
+.cta-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.cta-button:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.5);
+}
+
+/* Nominees Section */
+.nominees {
+    padding: 6rem 0;
+    background: var(--bg-white);
+    position: relative;
+}
+
+.nominees::before {
+    content: '⭐';
+    position: absolute;
+    top: 2rem;
+    left: 5%;
+    font-size: 3rem;
+    opacity: 0.2;
+    animation: twinkle 3s ease-in-out infinite;
+}
+
+.nominees::after {
+    content: '✨';
+    position: absolute;
+    bottom: 2rem;
+    right: 5%;
+    font-size: 3rem;
+    opacity: 0.2;
+    animation: twinkle 3s ease-in-out infinite 1.5s;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+.nominee-card {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 5rem;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(254, 243, 199, 0.2) 0%, rgba(252, 231, 243, 0.2) 100%);
+    padding: 2rem;
+    border-radius: 24px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nominee-card::before {
+    content: '🐷';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    opacity: 0.1;
+}
+
+.nominee-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.nominee-card.reverse {
+    flex-direction: row-reverse;
+}
+
+.nominee-image {
+    flex: 1;
+    max-width: 500px;
+}
+
+.nominee-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.nominee-image img:hover {
+    transform: scale(1.05);
+}
+
+.nominee-content {
+    flex: 1;
+    padding: 2rem;
+}
+
+.nominee-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-dark);
+    position: relative;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-pink) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.nominee-content h2::before {
+    content: '🏆';
+    margin-right: 10px;
+    -webkit-text-fill-color: initial;
+}
+
+.nominee-content h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--accent-gold) 100%);
+    margin-top: 1rem;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+}
+
+.nominee-content p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--text-light);
+}
+
+/* Video Section */
+.video-section {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #fce7f3 0%, #dbeafe 100%);
+    position: relative;
+}
+
+.video-section::before {
+    content: '🎬';
+    position: absolute;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3rem;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-15px); }
+}
+
+.video-title {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    margin-top: 3rem;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-pink) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: bold;
+}
+
+.ceremony-video {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    display: block;
+    margin: 0 auto;
+}
+
+/* Footer */
+.footer {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, #374151 100%);
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+    margin-top: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: '🐷 🏆 🎉 ✨ 🐷 🏆 🎉 ✨';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    opacity: 0.1;
+    white-space: nowrap;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero {
+        padding: 2rem 0 1rem;
+    }
+
+    .hero-content {
+        padding: 1rem 0;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+        letter-spacing: 1px;
+    }
+
+    .hero-image {
+        margin-top: 2rem;
+    }
+
+    .hero-image img {
+        max-width: 100%;
+    }
+
+    .cta-button {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+
+    .nominee-card,
+    .nominee-card.reverse {
+        flex-direction: column;
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .nominee-image {
+        max-width: 100%;
+    }
+
+    .nominee-content {
+        padding: 1rem;
+    }
+
+    .nominee-content h2 {
+        font-size: 2rem;
+    }
+
+    .nominee-content p {
+        font-size: 1rem;
+    }
+
+    .nominees {
+        padding: 3rem 0;
+    }
+}
