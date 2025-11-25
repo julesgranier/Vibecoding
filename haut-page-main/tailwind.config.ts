@@ -62,7 +62,9 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				'mate-yellow': 'hsl(var(--mate-yellow))'
+				'mate-yellow': 'hsl(var(--mate-yellow))',
+				'mate': 'hsl(var(--mate))',
+				'mate-dark': 'hsl(var(--mate-dark))'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
